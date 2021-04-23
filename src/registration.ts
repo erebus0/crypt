@@ -1,6 +1,7 @@
 import {request,response} from 'express';
+import User from './user';
 import bcrypt from 'bcrypt';
-import logger from '../../config/logger';
+// import logger from '../../config/logger';
 
 
 
@@ -15,6 +16,7 @@ const registerUser = async(req: Request, res: Response) => {
         const newUser = new User({
             userName: req.body.userName,
             firstName: req.body.firstName,
+            lastName: req.body.lastName,
             email: req.body.email,
             password: bcrypt.hashSync(password,salt),
             phoneNumber: req.body.phoneNumber,
