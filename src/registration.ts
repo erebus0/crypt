@@ -1,15 +1,15 @@
-import {request,response} from 'express';
+import {Request, Response} from 'express';
 import User from './user';
-import bcrypt from 'bcrypt';
-// import logger from '../../config/logger';
+import bcrypt from 'bcryptjs';
+import logger from './logger'
 
 
 
-const registerUser = async(req: Request, res: Response) => {
+const registerUser = async (req: Request, res: Response) => {
     logger.debug('Step 1- Initializing user registration');
 
     try{
-        const salt = await bcrypt.genSaltsync(10);
+        const salt = await bcrypt.genSaltSync(10);
         const password = await req.body.password;
         
 
@@ -41,7 +41,7 @@ const registerUser = async(req: Request, res: Response) => {
 
         });
     } catch(error) {
-        Console.log(error);
+        console.log(error);
         res.status(400).json({status: "error", statusCode: 400, message: error.message});
         
     }
